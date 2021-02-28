@@ -39,8 +39,22 @@ module "cloudfront_sg_lambda" {
 
   publish = false
 
-  create_package         = false
-  local_existing_package = "dist/cloudfront-sg-lambda.zip"
+  # create_package         = false
+  # local_existing_package = "src/dist/cloudfront-sg-lambda.zip"
+  source_path = [
+    {
+      path             = "src"
+      pip_requirements = false,
+      commands         = ["npm install"]
+      patterns = [
+        "!node_modules/.*"
+      ]
+    }
+  ]
+
+  build_in_docker   = true
+  docker_image      = "node:14"
+  docker_build_root = "/"
 
   create_current_version_allowed_triggers   = false
   create_unqualified_alias_allowed_triggers = true
