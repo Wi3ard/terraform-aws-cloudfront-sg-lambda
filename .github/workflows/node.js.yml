@@ -26,4 +26,5 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "dist/*"
+        tag: "Test"
         token: ${{ secrets.GITHUB_TOKEN }}
