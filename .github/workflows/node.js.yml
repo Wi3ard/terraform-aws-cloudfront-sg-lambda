@@ -24,3 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: cd src && yarn --frozen-lockfile
     - run: cd src && yarn build
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'release.zip'
+        directory: 'dist'
