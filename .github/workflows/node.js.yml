@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: cd src && yarn --frozen-lockfile
     - run: cd src && yarn build
-      uses: thedoctor0/zip-release@master
+    - uses: ncipollo/release-action@v1
       with:
-        filename: 'release.zip'
-        directory: 'dist'
+        artifacts: "dist/*"
+        token: ${{ secrets.GITHUB_TOKEN }}
