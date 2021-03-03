@@ -21,11 +21,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd src && yarn --frozen-lockfile
-    - run: cd src && yarn build
+    - name: Install dependencies
+      run: cd src && yarn --frozen-lockfile
+    - name: Build
+      run: cd src && yarn build
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: ".serverless/cloudfront-sg-lambda.zip"
+        tag_name: "Test"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
