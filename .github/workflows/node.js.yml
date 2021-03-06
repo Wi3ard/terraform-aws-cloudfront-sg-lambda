@@ -2,10 +2,10 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
-  workflow_dispatch:
+    branches-ignore:
+      - "**"
+    tags:
+      - "**"
 
 jobs:
   build:
